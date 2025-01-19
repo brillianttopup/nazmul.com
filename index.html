@@ -156,57 +156,60 @@
 
     <script>
         function checkNumber() {
-            const phoneNumber = document.getElementById("phoneNumber").value.trim();
-            const resultDiv = document.getElementById("result");
-            const keySound = document.getElementById("keySound");
+    const phoneNumber = document.getElementById("phoneNumber").value.trim();
+    const resultDiv = document.getElementById("result");
+    const keySound = document.getElementById("keySound");
 
-            // Clear previous result
-            resultDiv.style.display = "none";
-            resultDiv.innerHTML = "";
+    // Clear previous result
+    resultDiv.style.display = "none";
+    resultDiv.innerHTML = "";
 
-            // Play the key.mp3 audio
-            keySound.play();
+    // Play the key.mp3 audio
+    keySound.play();
 
-            // Show popup for Key input
-            const key = prompt("অনুগ্রহ করে Key প্রদান করুন:");
+    // Show popup for Key input
+    const key = prompt("অনুগ্রহ করে Key প্রদান করুন:");
 
-            // Validate Key
-            if (key !== "5022") {
-                alert("ভুল Key! সঠিক Key প্রদান করুন।");
-                return;
-            }
+    // Validate Key
+    if (key !== "5022") {
+        alert("ভুল Key! সঠিক Key প্রদান করুন।");
+        return;
+    }
 
-            // Check if phone number field is empty
-            if (phoneNumber === "") {
-                resultDiv.innerHTML = `<p class="error">অনুগ্রহ করে একটি নাম্বার লিখুন।</p>`;
-                resultDiv.style.display = "block";
-                return;
-            }
+    // Check if phone number field is empty
+    if (phoneNumber === "") {
+        resultDiv.innerHTML = `<p class="error">অনুগ্রহ করে একটি নাম্বার লিখুন।</p>`;
+        resultDiv.style.display = "block";
+        return;
+    }
 
-            // Validate phone number
-            if (phoneNumber === "01405985541", "01887212417") {
-                resultDiv.innerHTML = `
-                    <p class="success">➠ <strong>Daraz:</strong> 3</p>
-                    <p class="success">➠ <strong>Amazon:</strong> 0</p>
-                    <p class="success">➠ <strong>AliExpress:</strong> 0</p>
-                    <p class="success">➠ <strong>Rokomari:</strong> 0</p>
-                    <p class="success">➠ <strong>Bikroy:</strong> 0</p>
-                    <p class="success">➠ <strong>Alibaba.com:</strong> 0</p>
-                    <p class="success">➠ <strong>Easy Buy:</strong> 0</p>
-                    <p class="success">➠ <strong>Foodpanda:</strong> 0</p>
-                    <p class="success">➠ <strong>Facebook page:Status:</strong> 1</p>
-                `;
-                resultDiv.style.backgroundColor = "#e6ffe6";
-                resultDiv.style.border = "1px solid #c3e6cb";
-                resultDiv.style.color = "#155724";
-                resultDiv.style.display = "block";
-            } else {
-                resultDiv.innerHTML = `<p class="error">এই নাম্বারে কোনো অর্ডার নেই।</p>`;
-                resultDiv.style.backgroundColor = "#ffe6e6";
-                resultDiv.style.border = "1px solid #f5c6cb";
-                resultDiv.style.color = "#721c24";
-                resultDiv.style.display = "block";
-            }
+    // List of valid numbers
+    const validNumbers = ["01405985541", "01887212417"];
+
+    if (validNumbers.includes(phoneNumber)) {
+        resultDiv.innerHTML = `
+            <p class="success">➠ <strong>Daraz:</strong> 3</p>
+            <p class="success">➠ <strong>Amazon:</strong> 0</p>
+            <p class="success">➠ <strong>AliExpress:</strong> 0</p>
+            <p class="success">➠ <strong>Rokomari:</strong> 0</p>
+            <p class="success">➠ <strong>Bikroy:</strong> 0</p>
+            <p class="success">➠ <strong>Alibaba.com:</strong> 0</p>
+            <p class="success">➠ <strong>Easy Buy:</strong> 0</p>
+            <p class="success">➠ <strong>Foodpanda:</strong> 0</p>
+            <p class="success">➠ <strong>Facebook page:Status:</strong> 1</p>
+        `;
+        resultDiv.style.backgroundColor = "#e6ffe6";
+        resultDiv.style.border = "1px solid #c3e6cb";
+        resultDiv.style.color = "#155724";
+        resultDiv.style.display = "block";
+    } else {
+        resultDiv.innerHTML = `<p class="error">এই নাম্বারে কোনো অর্ডার নেই।</p>`;
+        resultDiv.style.backgroundColor = "#ffe6e6";
+        resultDiv.style.border = "1px solid #f5c6cb";
+        resultDiv.style.color = "#721c24";
+        resultDiv.style.display = "block";
+    }
+ 
         }
     </script>
 </body>
