@@ -3,121 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Banned</title>
+    <title>Online Order Check</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes buttonHover {
+            0% {
+                background-color: #ff6600;
+            }
+            50% {
+                background-color: #e65c00;
+            }
+            100% {
+                background-color: #ff6600;
+            }
+        }
+
+        @keyframes resultFade {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #0e0e0e;
-            color: #ff4d4d;
             font-family: Arial, sans-serif;
-            overflow: hidden;
+            background-color: #fff5e6;
+            margin: 0;
+            padding: 0;
+            animation: fadeIn 1s ease-in-out;
         }
-
         .container {
+            max-width: 450px;
+            margin: 30px auto;
+            padding: 20px;
+            background: linear-gradient(145deg, #f7f7f7, #e0e0e0);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .logo {
             text-align: center;
-            animation: fadeIn 2s ease-in-out;
-            max-width: 80%;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in-out;
         }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            animation: glow 2s ease-in-out infinite alternate, bounceIn 1s ease-in-out;
-            color: #ff5757;
-            text-shadow: 0 0 10px #ff4d4d, 0 0 20px #ff4d4d;
+        .logo img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 2px solid #ff6600;
+            object-fit: cover;
+            animation: fadeIn 1s ease-in-out;
         }
-
-        p {
-            font-size: 1.2rem;
-            color: #ffbaba;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1.5s ease-in-out forwards, shake 1s ease-in-out 3s infinite;
+        h2 {
+            text-align: center;
+            color: #ff6600;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in-out;
         }
-
-        .note {
-            font-size: 1rem;
-            color: #f08;
-            animation: colorShift 5s infinite, slideIn 2s ease-in-out;
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+            animation: fadeIn 1s ease-in-out;
         }
-
-        .banned-by {
-            font-size: 1.2rem;
-            color: #ff9999;
-            margin-top: 1rem;
-            animation: bounceIn 2s ease-in-out forwards, colorShift 3s infinite;
+        input:focus {
+            border-color: #ff6600;
         }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #ff6600;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            animation: fadeIn 1s ease-in-out;
         }
-
-        @keyframes glow {
-            0% { text-shadow: 0 0 10px #ff4d4d, 0 0 20px #ff4d4d, 0 0 30px #ff1a1a; }
-            100% { text-shadow: 0 0 20px #ff7575, 0 0 40px #ff4d4d, 0 0 60px #ff1a1a; }
+        button:hover {
+            animation: buttonHover 0.8s infinite ease-in-out;
         }
-
-        @keyframes bounceIn {
-            0% { transform: scale(0.5); opacity: 0; }
-            60% { transform: scale(1.2); opacity: 1; }
-            100% { transform: scale(1); }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #fff0e6;
+            color: #333;
+            font-size: 16px;
+            display: none;
+            animation: resultFade 0.5s ease-in-out;
         }
-
-        @keyframes fadeInUp {
-            0% { transform: translateY(30px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
+        .result p {
+            margin: 5px 0;
         }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
+        .error {
+            color: #d93025;
+            font-weight: bold;
         }
-
-        @keyframes colorShift {
-            0% { color: #ff4d4d; }
-            25% { color: #ff6666; }
-            50% { color: #ffbaba; }
-            75% { color: #ff4d4d; }
-            100% { color: #ffbaba; }
+        .success {
+            color: #155724;
         }
-
-        @keyframes slideIn {
-            0% { transform: translateY(20px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        footer a {
+            text-decoration: none;
+            color: #ff6600;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Sorry, this website is banned!</h1>
-        <p>Your website license has expired. Please contact support for more details.</p>
-        <p class="note">Thank you for your understanding.</p>
-        <p class="banned-by">This website has been banned by Brilliant Contact.</p>
+        <div class="logo">
+            <img src="https://i.ibb.co/6Dw5nmD/images-8.jpg" alt="Logo">
+        </div>
+        <h2>Online Order Check</h2>
+        <input type="text" id="phoneNumber" placeholder="নগদ নাম্বার লিখুন (উদাহরণ: 01405985541)">
+        <button onclick="checkNumber()">অডার দেখুন</button>
+        <div id="result" class="result"></div>
     </div>
+    <footer>
+        &copy; 2025 <a href="#">Developer→Mostafizur</a>
+    </footer>
 
-    <!-- Audio player for sound effect -->
-    <audio id="bannedSound" src="https://www.soundjay.com/button/sounds/beep-07.mp3" preload="auto"></audio>
+    <!-- Audio for Key Input -->
+    <audio id="keySound" src="key.mp3"></audio>
 
     <script>
-        // Play sound when the page loads
-        document.addEventListener("DOMContentLoaded", () => {
-            const audio = document.getElementById("bannedSound");
-            audio.play();
+        function checkNumber() {
+            const phoneNumber = document.getElementById("phoneNumber").value.trim();
+            const resultDiv = document.getElementById("result");
+            const keySound = document.getElementById("keySound");
 
-            setTimeout(() => {
-                document.querySelector(".container").classList.add("shake");
-            }, 4000);
-        });
+            // Clear previous result
+            resultDiv.style.display = "none";
+            resultDiv.innerHTML = "";
+
+            // Play the key.mp3 audio
+            keySound.play();
+
+            // Show popup for Key input
+            const key = prompt("অনুগ্রহ করে Key প্রদান করুন:");
+
+            // Validate Key
+            if (key !== "5022") {
+                alert("ভুল Key! সঠিক Key প্রদান করুন।");
+                return;
+            }
+
+            // Check if phone number field is empty
+            if (phoneNumber === "") {
+                resultDiv.innerHTML = `<p class="error">অনুগ্রহ করে একটি নাম্বার লিখুন।</p>`;
+                resultDiv.style.display = "block";
+                return;
+            }
+
+            // Validate phone number
+            if (phoneNumber === "01405985541") {
+                resultDiv.innerHTML = `
+                    <p class="success">➠ <strong>Daraz:</strong> 3</p>
+                    <p class="success">➠ <strong>Amazon:</strong> 0</p>
+                    <p class="success">➠ <strong>AliExpress:</strong> 0</p>
+                    <p class="success">➠ <strong>Rokomari:</strong> 0</p>
+                    <p class="success">➠ <strong>Bikroy:</strong> 0</p>
+                    <p class="success">➠ <strong>Alibaba.com:</strong> 0</p>
+                    <p class="success">➠ <strong>Easy Buy:</strong> 0</p>
+                    <p class="success">➠ <strong>Foodpanda:</strong> 0</p>
+                    <p class="success">➠ <strong>Facebook page:Status:</strong> 1</p>
+                `;
+                resultDiv.style.backgroundColor = "#e6ffe6";
+                resultDiv.style.border = "1px solid #c3e6cb";
+                resultDiv.style.color = "#155724";
+                resultDiv.style.display = "block";
+            } else {
+                resultDiv.innerHTML = `<p class="error">এই নাম্বারের সাথে কোনো তথ্য পাওয়া যায়নি।</p>`;
+                resultDiv.style.backgroundColor = "#ffe6e6";
+                resultDiv.style.border = "1px solid #f5c6cb";
+                resultDiv.style.color = "#721c24";
+                resultDiv.style.display = "block";
+            }
+        }
     </script>
 </body>
 </html>
